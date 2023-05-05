@@ -1,0 +1,30 @@
+{
+  "name": "weather-app",
+  "version": "0.0.1",
+  "description": "A simple weather app using the OpenWeatherMap API",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DameonL/weather-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DameonL/weather-app/issues"
+  },
+  "homepage": "https://github.com/DameonL/weather-app#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "preact": "^10.13.2"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^11.0.0",
+    "process": "^0.11.10",
+    "ts-loader": "^9.4.2",
+    "typescript": "^5.0.4",
+    "vite": "^4.3.5",
+    "webpack-cli": "^5.0.2"
+  }
+}
