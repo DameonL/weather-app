@@ -2,8 +2,9 @@
   "name": "weather-app",
   "version": "0.0.1",
   "description": "A simple weather app using the OpenWeatherMap API",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "serve": "vite serve"
   },
   "repository": {
     "type": "git",
@@ -16,15 +17,13 @@
   },
   "homepage": "https://github.com/DameonL/weather-app#readme",
   "dependencies": {
-    "dotenv": "^16.0.3",
-    "preact": "^10.13.2"
+    "@types/react": "^18.2.6",
+    "@types/react-dom": "^18.2.4",
+    "preact": "^10.13.2",
+    "typescript-plugin-css-modules": "^5.0.1"
   },
   "devDependencies": {
-    "copy-webpack-plugin": "^11.0.0",
-    "process": "^0.11.10",
-    "ts-loader": "^9.4.2",
     "typescript": "^5.0.4",
-    "vite": "^4.3.5",
-    "webpack-cli": "^5.0.2"
+    "vite": "^4.3.5"
   }
 }
