@@ -1,0 +1,34 @@
+{
+  "name": "weather-app",
+  "version": "0.0.1",
+  "description": "A simple weather app using the OpenWeatherMap API",
+  "type": "module",
+  "scripts": {
+    "dev": "vite serve --mode DEV"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DameonL/weather-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DameonL/weather-app/issues"
+  },
+  "homepage": "https://github.com/DameonL/weather-app#readme",
+  "dependencies": {
+    "@emotion/react": "latest",
+    "@emotion/styled": "latest",
+    "@mui/material": "latest",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "typescript": "latest",
+    "typescript-plugin-css-modules": "latest",
+    "vite": "latest",
+    "@types/react": "^18.2.6",
+    "@types/react-dom": "^18.2.4"
+  },
+  "main": "vite.config.js"
+}

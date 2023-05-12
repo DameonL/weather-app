@@ -1,17 +1,26 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions"
 
+const endpoint = "https://api.open-meteo.com/v1/forecast";
+
 const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
-    context.log('HTTP trigger function processed a request.');
-    const name = (req.query.name || (req.body && req.body.name));
-    const responseMessage = name
-        ? "Hello, " + name + ". This HTTP triggered function executed successfully."
-        : "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.";
+    const latitude = req.query.latitude;
+    const longitude = req.query.longitude;
+
+    const params = new URLSearchParams();
+    params.set("latitude", latitude);
+    params.set("longitude", longitude);
+    params.set("temperature_unit", "fahrenheit");
+    params.set("windspeed_unit", "mph");
+    params.set("precipitation_unit", "inch");
+    params.set("current_weather", "true");
+    const uri = `${endpoint}?${params}`;
+    
+    const response = await fetch(uri);
+    const body = await response.json();
 
     context.res = {
-        // status: 200, /* Defaults to 200 */
-        body: { responseMessage }
+        body
     };
-
 };
 
 export default httpTrigger;

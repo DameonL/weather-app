@@ -1,10 +1,10 @@
 {
   "name": "weather-app",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A simple weather app using the OpenWeatherMap API",
-  "type": "module",
+  "main": "index.js",
   "scripts": {
-    "serve": "vite serve"
+    "dev": "concurrently \"cd api && npm run dev\" \"cd frontend && npm run dev\""
   },
   "repository": {
     "type": "git",
@@ -16,14 +16,8 @@
     "url": "https://github.com/DameonL/weather-app/issues"
   },
   "homepage": "https://github.com/DameonL/weather-app#readme",
-  "dependencies": {
-    "@types/react": "^18.2.6",
-    "@types/react-dom": "^18.2.4",
-    "preact": "^10.13.2",
-    "typescript-plugin-css-modules": "^5.0.1"
-  },
   "devDependencies": {
-    "typescript": "^5.0.4",
-    "vite": "^4.3.5"
-  }
+    "concurrently": "^8.0.1"
+  },
+  "dependencies": {}
 }

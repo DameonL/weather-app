@@ -5,8 +5,4 @@ export default defineConfig({
   build: {
     outDir: "../dist",
   },
-  esbuild: {
-    jsxFactory: "h",
-    jsxFragment: "Fragment",
-  },
 });
