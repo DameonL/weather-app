@@ -1,5 +1,5 @@
 import { Box, Collapse, Container, Tab, Tabs } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { GeocodePlace } from "../ApiInterfaces/ApiDefinitions/GeocodePlace";
 import UnitSettings from "../ApiInterfaces/UnitSettings";
 import CurrentWeatherDisplay from "./CurrentWeatherDisplay";
@@ -15,6 +15,10 @@ export default function WeatherApp() {
   });
   const [location, setLocation] = useState<GeocodePlace>();
   const [activeTab, setActiveTab] = useState<number>(0);
+
+  useEffect(() => {
+    setActiveTab(0);
+  }, [location]);
 
   return (
     <Box>
