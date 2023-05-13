@@ -30,12 +30,19 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
   params.set("timezone", timezone);
   const uri = `${endpoint}?${params}`;
 
-  const response = await fetch(uri);
-  const body = await response.json();
+  let response: Response;
+  let attempts = 5;
+  while (!response && attempts > 0) {
+    attempts--;
+    try {
+      response = await fetch(uri);
+      const body = await response.json();
 
-  context.res = {
-    body,
-  };
+      context.res = {
+        body,
+      };
+    } catch {}
+  }
 };
 
 export default httpTrigger;
