@@ -1,4 +1,5 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions";
+import axios from "axios";
 
 const endpoint = "https://api.open-meteo.com/v1/forecast";
 const hourlyVariables = ["weathercode", "temperature_2m", "relativehumidity_2m", "precipitation_probability"];
@@ -26,7 +27,7 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
   while (!response && attempts > 0) {
     attempts--;
     try {
-      response = await fetch(uri);
+      response = await axios.get(uri);
       const body = await response.json();
 
       context.res = {
