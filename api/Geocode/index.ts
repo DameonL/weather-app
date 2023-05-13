@@ -1,5 +1,5 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 
 const endpoint = "https://geocoding-api.open-meteo.com/v1/search";
 
@@ -16,19 +16,18 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
 
   const uri = `${endpoint}?${params}`;
 
-  let response: Response;
+  let response: AxiosResponse<any, any>;
   let attempts = 5;
   while (!response && attempts > 0) {
     attempts--;
     try {
       response = await axios.get(uri);
-      const body = await response.json();
-      const results = body.results;
+      const body = response.data;
 
       context.res = {
-        body: results,
+        body,
       };
-    } catch (error) {}
+    } catch {}
   }
 };
 
