@@ -6,12 +6,11 @@
     "dev": "concurrently \"tsc -w\" \"nodemon\"",
     "build": "tsc",
     "watch": "tsc -w",
-    "start": "func start",
-    "test": "echo \"No tests yet...\""
+    "start": "func start --typescript"
   },
   "nodemonConfig": {
     "watch": "dist",
-    "exec": "func start"
+    "exec": "npm run start"
   },
   "devDependencies": {
     "@azure/functions": "^3.0.0",

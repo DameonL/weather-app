@@ -4,7 +4,8 @@
   "description": "A simple weather app using the OpenWeatherMap API",
   "type": "module",
   "scripts": {
-    "dev": "vite serve --mode DEV"
+    "dev": "vite serve --mode DEV",
+    "build": "vite build --emptyOutDir"
   },
   "repository": {
     "type": "git",

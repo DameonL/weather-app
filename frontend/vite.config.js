@@ -3,6 +3,9 @@ import { defineConfig } from "vite";
 export default defineConfig({
   root: "src/",
   build: {
-    outDir: "../dist",
+    outDir: "../../frontendBuild",
+  },
+  server: {
+    port: 7070
   },
 });
