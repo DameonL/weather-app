@@ -12,7 +12,7 @@ export default async function FetchCurrentWeather(latitude: string, longitude: s
   query.set("windspeedUnit", unitSettings.windspeedUnit);
   query.set("temperatureUnit", unitSettings.temperatureUnit);
   query.set("precipitationUnit", unitSettings.precipitationUnit);
-  const targetUrl = `${AppConfig.development ? "http" : "https"}://${apiSettings.endpoint}/${route}?${query}`;
+  const targetUrl = `${apiSettings.endpoint}/${route}?${query}`;
   const response = await fetch(targetUrl);
   const report = (await response.json()) as CurrentWeather;
   return report;
