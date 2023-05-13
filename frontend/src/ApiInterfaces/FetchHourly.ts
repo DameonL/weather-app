@@ -17,7 +17,7 @@ export default async function FetchHourly(
   query.set("longitude", longitude);
   query.set("timezone", timezone);
   applyUnitSettings(unitSettings, query);
-  const targetUrl = `${AppConfig.development ? "http" : "https"}://${apiSettings.endpoint}/${route}?${query}`;
+  const targetUrl = `${apiSettings.endpoint}/${route}?${query}`;
   const response = await fetch(targetUrl);
   const report = (await response.json()) as HourlyWeather;
   return report;

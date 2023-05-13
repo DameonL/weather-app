@@ -1,4 +1,3 @@
-import AppConfig from "../AppConfig";
 import { Forecast } from "./ApiDefinitions/Forecast";
 import UnitSettings from "./UnitSettings";
 import apiSettings from "./apiSettings";
@@ -17,7 +16,7 @@ export default async function FetchForecast(
   query.set("longitude", longitude);
   query.set("timezone", timezone);
   applyUnitSettings(unitSettings, query);
-  const targetUrl = `${AppConfig.development ? "http" : "https"}://${apiSettings.endpoint}/${route}?${query}`;
+  const targetUrl = `${apiSettings.endpoint}/${route}?${query}`;
   const response = await fetch(targetUrl);
   const report = (await response.json()) as Forecast;
   return report;

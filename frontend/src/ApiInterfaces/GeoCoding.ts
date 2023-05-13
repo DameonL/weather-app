@@ -9,7 +9,7 @@ export async function getCoordinates(place: string): Promise<GeocodePlace[] | Ge
   const query = new URLSearchParams();
   query.set("search", place);
 
-  const targetUrl = `${AppConfig.development ? "http" : "https"}://${apiSettings.endpoint}/${route}?${query}`;
+  const targetUrl = `${apiSettings.endpoint}/${route}?${query}`;
   const response = await fetch(targetUrl);
 
   try {
