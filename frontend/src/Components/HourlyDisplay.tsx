@@ -23,12 +23,16 @@ export default function HourlyDisplay(props: WeatherDisplayProps) {
   const [rowsPerPage, setRowsPerPage] = useState<number>(10);
 
   useEffect(() => {
+    setHourlyWeather(undefined);
+  }, [props.location]);
+
+  useEffect(() => {
     if (!props.location) {
       setHourlyWeather(undefined);
       return;
     }
 
-    if (!props.active) {
+    if (!props.active || hourlyWeather) {
       return;
     }
 
@@ -38,7 +42,7 @@ export default function HourlyDisplay(props: WeatherDisplayProps) {
       }
       setPage(0);
 
-      const currentWeather = await FetchHourly(
+      const weather = await FetchHourly(
         props.location.latitude.toString(),
         props.location.longitude.toString(),
         Intl.DateTimeFormat().resolvedOptions().timeZone,
@@ -50,15 +54,15 @@ export default function HourlyDisplay(props: WeatherDisplayProps) {
       now.setSeconds(0);
       now.setMilliseconds(0);
 
-      while (new Date(currentWeather.hourly.time[0]).valueOf() < now.valueOf()) {
-        currentWeather.hourly.time.splice(0, 1);
-        currentWeather.hourly.precipitation_probability.splice(0, 1);
-        currentWeather.hourly.temperature_2m.splice(0, 1);
-        currentWeather.hourly.relativehumidity_2m.splice(0, 1);
-        currentWeather.hourly.weathercode.splice(0, 1);
+      while (new Date(weather.hourly.time[0]).valueOf() < now.valueOf()) {
+        weather.hourly.time.splice(0, 1);
+        weather.hourly.precipitation_probability.splice(0, 1);
+        weather.hourly.temperature_2m.splice(0, 1);
+        weather.hourly.relativehumidity_2m.splice(0, 1);
+        weather.hourly.weathercode.splice(0, 1);
       }
 
-      setHourlyWeather(currentWeather);
+      setHourlyWeather(weather);
     })();
   }, [props.active, props.location]);
 

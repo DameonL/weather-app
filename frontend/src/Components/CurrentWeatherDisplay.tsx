@@ -10,12 +10,11 @@ export default function CurrentWeatherDisplay(props: WeatherDisplayProps) {
   const [currentWeather, setCurrentWeather] = useState<CurrentWeather>();
 
   useEffect(() => {
-    if (!props.location) {
-      setCurrentWeather(undefined);
-      return;
-    }
+    setCurrentWeather(undefined);
+  }, [props.location]);
 
-    if (!props.active) {
+  useEffect(() => {
+    if (!props.active || currentWeather) {
       return;
     }
 
@@ -24,12 +23,12 @@ export default function CurrentWeatherDisplay(props: WeatherDisplayProps) {
         return;
       }
 
-      const currentWeather = await FetchCurrentWeather(
+      const weather = await FetchCurrentWeather(
         props.location.latitude.toString(),
         props.location.longitude.toString(),
         props.unitSettings
       );
-      setCurrentWeather(currentWeather);
+      setCurrentWeather(weather);
     })();
   }, [props.active, props.location]);
 

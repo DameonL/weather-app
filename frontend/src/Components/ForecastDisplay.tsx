@@ -9,12 +9,16 @@ export default function ForecastDisplay(props: WeatherDisplayProps) {
   const [forecast, setForecast] = useState<Forecast>();
 
   useEffect(() => {
+    setForecast(undefined);
+  }, [props.location]);
+
+  useEffect(() => {
     if (!props.location) {
       setForecast(undefined);
       return;
     }
 
-    if (!props.active) {
+    if (!props.active || forecast) {
       return;
     }
 
@@ -23,13 +27,13 @@ export default function ForecastDisplay(props: WeatherDisplayProps) {
         return;
       }
 
-      const forecast = await FetchForecast(
+      const weather = await FetchForecast(
         props.location.latitude.toString(),
         props.location.longitude.toString(),
         Intl.DateTimeFormat().resolvedOptions().timeZone,
         props.unitSettings
       );
-      setForecast(forecast);
+      setForecast(weather);
     })();
   }, [props.active, props.location]);
 
