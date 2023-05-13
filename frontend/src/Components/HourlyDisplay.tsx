@@ -27,12 +27,7 @@ export default function HourlyDisplay(props: WeatherDisplayProps) {
   }, [props.location]);
 
   useEffect(() => {
-    if (!props.location) {
-      setHourlyWeather(undefined);
-      return;
-    }
-
-    if (!props.active || hourlyWeather) {
+    if (!props.active) {
       return;
     }
 

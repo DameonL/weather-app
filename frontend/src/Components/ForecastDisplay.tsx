@@ -13,12 +13,7 @@ export default function ForecastDisplay(props: WeatherDisplayProps) {
   }, [props.location]);
 
   useEffect(() => {
-    if (!props.location) {
-      setForecast(undefined);
-      return;
-    }
-
-    if (!props.active || forecast) {
+    if (!props.active) {
       return;
     }
 

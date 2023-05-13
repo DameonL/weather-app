@@ -14,7 +14,7 @@ export default function CurrentWeatherDisplay(props: WeatherDisplayProps) {
   }, [props.location]);
 
   useEffect(() => {
-    if (!props.active || currentWeather) {
+    if (!props.active) {
       return;
     }
 
