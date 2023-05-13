@@ -36,7 +36,11 @@ export default function CurrentWeatherDisplay(props: WeatherDisplayProps) {
   }, [props.active, props.location]);
 
   if (loading) {
-    return <CircularProgress />;
+    return (
+      <Card sx={{ maxWidth: "30em", margin: "auto" }} variant="outlined">
+        <CircularProgress />
+      </Card>
+    );
   }
 
   return (

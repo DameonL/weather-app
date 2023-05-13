@@ -40,7 +40,11 @@ export default function ForecastDisplay(props: WeatherDisplayProps) {
   }
 
   if (loading) {
-    return <CircularProgress />;
+    return (
+      <Card sx={{ maxWidth: "30em", margin: "auto" }} variant="outlined">
+        <CircularProgress />
+      </Card>
+    );
   }
 
   return (
