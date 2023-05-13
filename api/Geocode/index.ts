@@ -22,7 +22,7 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
     attempts--;
     try {
       response = await axios.get(uri);
-      const body = response.data;
+      const body = response.data.results;
 
       context.res = {
         body,
