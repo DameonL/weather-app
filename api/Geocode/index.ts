@@ -15,13 +15,17 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
 
   const uri = `${endpoint}?${params}`;
   
-  const response = await fetch(uri);
-  const body = await response.json();
-  const results = body.results;
-
-  context.res = {
-    body: results
-  };
+  try {
+    const response = await fetch(uri);
+    const body = await response.json();
+    const results = body.results;
+  
+    context.res = {
+      body: results
+    };
+  } catch (error) {
+    context.res = { body: error }
+  }
 };
 
 export default httpTrigger;
