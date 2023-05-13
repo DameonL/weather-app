@@ -1,6 +1,7 @@
 import {
   Card,
   CardContent,
+  CircularProgress,
   Collapse,
   Table,
   TableBody,
@@ -21,6 +22,7 @@ export default function HourlyDisplay(props: WeatherDisplayProps) {
   const [hourlyWeather, setHourlyWeather] = useState<HourlyWeather>();
   const [page, setPage] = useState<number>(0);
   const [rowsPerPage, setRowsPerPage] = useState<number>(10);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     setHourlyWeather(undefined);
@@ -37,6 +39,7 @@ export default function HourlyDisplay(props: WeatherDisplayProps) {
       }
       setPage(0);
 
+      setLoading(true);
       const weather = await FetchHourly(
         props.location.latitude.toString(),
         props.location.longitude.toString(),
@@ -57,9 +60,14 @@ export default function HourlyDisplay(props: WeatherDisplayProps) {
         weather.hourly.weathercode.splice(0, 1);
       }
 
+      setLoading(false);
       setHourlyWeather(weather);
     })();
   }, [props.active, props.location]);
+
+  if (loading) {
+    return <CircularProgress />;
+  }
 
   return (
     <Collapse orientation="vertical" in={!(!props.location || !hourlyWeather || !props.active)}>

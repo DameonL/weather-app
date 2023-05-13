@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, CardHeader, Collapse, Grid, Typography } from "@mui/material";
+import { Box, Card, CardContent, CardHeader, CircularProgress, Collapse, Grid, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Forecast } from "../ApiInterfaces/ApiDefinitions/Forecast";
 import FetchForecast from "../ApiInterfaces/FetchForecast";
@@ -7,6 +7,7 @@ import WeatherDisplayProps from "./WeatherDisplayProps";
 
 export default function ForecastDisplay(props: WeatherDisplayProps) {
   const [forecast, setForecast] = useState<Forecast>();
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     setForecast(undefined);
@@ -22,18 +23,24 @@ export default function ForecastDisplay(props: WeatherDisplayProps) {
         return;
       }
 
+      setLoading(true);
       const weather = await FetchForecast(
         props.location.latitude.toString(),
         props.location.longitude.toString(),
         Intl.DateTimeFormat().resolvedOptions().timeZone,
         props.unitSettings
       );
+      setLoading(false);
       setForecast(weather);
     })();
   }, [props.active, props.location]);
 
   if (!props.location || !forecast) {
     return null;
+  }
+
+  if (loading) {
+    return <CircularProgress />;
   }
 
   return (

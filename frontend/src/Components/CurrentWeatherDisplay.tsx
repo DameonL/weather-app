@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, CardMedia, Collapse, Typography } from "@mui/material";
+import { Box, Card, CardContent, CardMedia, CircularProgress, Collapse, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { CurrentWeather } from "../ApiInterfaces/ApiDefinitions/CurrentWeather";
 import FetchCurrentWeather from "../ApiInterfaces/FetchCurrentWeather";
@@ -8,6 +8,7 @@ import WeatherDisplayProps from "./WeatherDisplayProps";
 
 export default function CurrentWeatherDisplay(props: WeatherDisplayProps) {
   const [currentWeather, setCurrentWeather] = useState<CurrentWeather>();
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     setCurrentWeather(undefined);
@@ -23,14 +24,20 @@ export default function CurrentWeatherDisplay(props: WeatherDisplayProps) {
         return;
       }
 
+      setLoading(true);
       const weather = await FetchCurrentWeather(
         props.location.latitude.toString(),
         props.location.longitude.toString(),
         props.unitSettings
       );
+      setLoading(false);
       setCurrentWeather(weather);
     })();
   }, [props.active, props.location]);
+
+  if (loading) {
+    return <CircularProgress />;
+  }
 
   return (
     <Collapse orientation="vertical" in={!(!props.location || !currentWeather || !props.active)}>
