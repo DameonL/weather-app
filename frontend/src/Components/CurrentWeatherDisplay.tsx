@@ -37,7 +37,6 @@ export default function CurrentWeatherDisplay(props: WeatherDisplayProps) {
       {props.location && currentWeather && (
         <Card sx={{ maxWidth: "30em", margin: "auto" }} variant="outlined">
           <CardContent>
-            <Typography>Current weather for {props.location.name}:</Typography>
             <Box sx={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
               <Typography>
                 {currentWeather.current_weather.is_day

@@ -66,7 +66,6 @@ export default function HourlyDisplay(props: WeatherDisplayProps) {
       {props.location && hourlyWeather && (
         <Card sx={{ margin: "auto" }} variant="outlined">
           <CardContent>
-            <Typography>Current weather for {props.location.name}:</Typography>
             <Table size="small">
               <TableHead>
                 <TableRow>

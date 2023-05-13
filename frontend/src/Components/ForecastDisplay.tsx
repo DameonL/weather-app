@@ -39,7 +39,6 @@ export default function ForecastDisplay(props: WeatherDisplayProps) {
   return (
     <Collapse orientation="vertical" in={!(!props.location || !forecast || !props.active)}>
       <Card variant="outlined">
-        <CardHeader title={`Forecast for ${props.location.name}:`} />
         <CardContent>
           <Grid
             container
