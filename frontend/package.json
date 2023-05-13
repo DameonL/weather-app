@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite serve --mode DEV",
-    "build": "vite build --emptyOutDir"
+    "build": "vite build --emptyOutDir --mode PROD"
   },
   "repository": {
     "type": "git",
