@@ -1,14 +1,15 @@
 import { CurrentWeather } from "./ApiDefinitions/CurrentWeather";
 import { GeocodePlace } from "./ApiDefinitions/GeocodePlace";
 import AppConfig from "../AppConfig";
+import apiSettings from "./apiSettings";
 
-const endpoint = "localhost:7071/api/Geocode";
+const route = "Geocode";
 
 export async function getCoordinates(place: string): Promise<GeocodePlace[] | GeocodePlace | undefined> {
   const query = new URLSearchParams();
   query.set("search", place);
 
-  const targetUrl = `${AppConfig.development ? "http" : "https"}://${endpoint}?${query}`;
+  const targetUrl = `${AppConfig.development ? "http" : "https"}://${apiSettings.endpoint}/${route}?${query}`;
   const response = await fetch(targetUrl);
 
   try {
