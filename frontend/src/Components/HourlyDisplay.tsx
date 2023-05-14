@@ -81,10 +81,10 @@ export default function HourlyDisplay(props: WeatherDisplayProps) {
             <Table size="small">
               <TableHead>
                 <TableRow>
-                  <TableCell style={{ width: "3em" }}>Time</TableCell>
-                  <TableCell style={{ width: "5em" }}>Temperature</TableCell>
-                  <TableCell style={{ width: "5em" }}>Humidity</TableCell>
-                  <TableCell style={{ width: "5em" }}>Precipitation</TableCell>
+                  <TableCell>Time</TableCell>
+                  <TableCell>Temperature</TableCell>
+                  <TableCell>Humidity</TableCell>
+                  <TableCell>Precip</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>

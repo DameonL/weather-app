@@ -21,26 +21,24 @@ export default function WeatherApp() {
   }, [location]);
 
   return (
-    <Box>
-      <Container>
-        <LocationSearch setLocation={setLocation} />
-        <Collapse in={location != undefined}>
-          <Tabs
-            sx={{ width: "30em", margin: "auto" }}
-            variant="fullWidth"
-            indicatorColor="secondary"
-            value={activeTab}
-            onChange={(event, newValue) => setActiveTab(newValue)}
-          >
-            <Tab label="Current" />
-            <Tab label="Hourly" />
-            <Tab label="7 day" />
-          </Tabs>
-        </Collapse>
-        <CurrentWeatherDisplay active={activeTab === 0} location={location} unitSettings={unitSettings} />
-        <HourlyDisplay active={activeTab === 1} location={location} unitSettings={unitSettings} />
-      </Container>
+    <div>
+      <LocationSearch setLocation={setLocation} />
+      <Collapse in={location != undefined}>
+        <Tabs
+          sx={{ margin: "auto" }}
+          indicatorColor="secondary"
+          value={activeTab}
+          scrollButtons="auto"
+          onChange={(event, newValue) => setActiveTab(newValue)}
+        >
+          <Tab label="Current" />
+          <Tab label="Hourly" />
+          <Tab label="7 day" />
+        </Tabs>
+      </Collapse>
+      <CurrentWeatherDisplay active={activeTab === 0} location={location} unitSettings={unitSettings} />
+      <HourlyDisplay active={activeTab === 1} location={location} unitSettings={unitSettings} />
       <ForecastDisplay active={activeTab === 2} location={location} unitSettings={unitSettings} />
-    </Box>
+    </div>
   );
 }
