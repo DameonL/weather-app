@@ -25,6 +25,7 @@ export default function WeatherApp() {
       <LocationSearch setLocation={setLocation} />
       <Collapse in={location != undefined}>
         <Tabs
+          centered
           sx={{ margin: "auto" }}
           indicatorColor="secondary"
           value={activeTab}
