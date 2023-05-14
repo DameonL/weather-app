@@ -20,7 +20,7 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
   params.set("precipitation_unit", precipitationUnit);
   params.set("hourly", hourlyVariables.join(","));
   params.set("timezone", timezone);
-  params.set("forecast_days", "1");
+  params.set("forecast_days", "2");
 
   let response: AxiosResponse<any, any>;
   let attempts = 5;
