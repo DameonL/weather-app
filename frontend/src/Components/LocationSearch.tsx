@@ -63,6 +63,7 @@ export default function LocationSearch(props: {
       label="City/Zip Code"
       variant="standard"
       defaultValue={placeName}
+      autoFocus={true}
       onKeyUp={(event) => {
         if (event.key === "Enter") {
           if (
