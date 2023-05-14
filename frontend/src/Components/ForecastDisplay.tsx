@@ -50,18 +50,16 @@ export default function ForecastDisplay(props: WeatherDisplayProps) {
   return (
     <Collapse orientation="vertical" in={!(!props.location || !forecast || !props.active)}>
       <Card variant="outlined">
-        <CardContent>
-          <Grid
-            container
-            spacing={{ xs: 1, md: 2 }}
-            columns={{ xs: 6.85, sm: 3.43, md: 1.714 }}
-            sx={{ justifyContent: "center", backgroundColor: "#E7EBF0" }}
-          >
-            {forecast.daily.time.map((time, index) => (
-              <ForecastDay key={index} day={index} forecast={forecast} />
-            ))}
-          </Grid>
-        </CardContent>
+        <Grid
+          container
+          spacing={{ xs: 1, md: 2 }}
+          columns={{ xs: 6.85, sm: 3.43, md: 1.714 }}
+          sx={{ justifyContent: "center", backgroundColor: "#E7EBF0" }}
+        >
+          {forecast.daily.time.map((time, index) => (
+            <ForecastDay key={index} day={index} forecast={forecast} />
+          ))}
+        </Grid>
       </Card>
     </Collapse>
   );

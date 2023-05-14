@@ -14,20 +14,20 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
   const params = new URLSearchParams();
   params.set("name", search);
 
-  const uri = `${endpoint}?${params}`;
-
   let response: AxiosResponse<any, any>;
   let attempts = 5;
   while (!response && attempts > 0) {
     attempts--;
     try {
-      response = await axios.get(uri);
+      response = await axios.get(endpoint, { params });
       const body = response.data.results;
 
       context.res = {
         body,
       };
-    } catch {}
+    } catch {
+      context.res.status = 500;
+    }
   }
 };
 
