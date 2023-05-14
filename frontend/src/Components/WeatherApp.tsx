@@ -28,7 +28,6 @@ export default function WeatherApp() {
           sx={{ margin: "auto" }}
           indicatorColor="secondary"
           value={activeTab}
-          scrollButtons="auto"
           onChange={(event, newValue) => setActiveTab(newValue)}
         >
           <Tab label="Current" />
