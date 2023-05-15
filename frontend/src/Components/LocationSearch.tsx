@@ -11,7 +11,18 @@ export default function LocationSearch(props: { setLocation: (location: GeocodeP
   const [searching, setSearching] = useState<boolean>(false);
 
   useEffect(() => {
-    setLocation(-1);
+    const params = new URLSearchParams(window.location.search);
+    const placeName = params.get("search");
+    const location = params.get("location");
+    if (!placeName || !location) {
+      return;
+    }
+
+    setPlaceName(placeName);
+    setLocation(Number(location));
+  }, []);
+
+  useEffect(() => {
     setLocations(undefined);
 
     if (placeName === "") {
@@ -39,6 +50,10 @@ export default function LocationSearch(props: { setLocation: (location: GeocodeP
   useEffect(() => {
     if (locations && locations.length > 0) {
       setLocation(0);
+      const params = new URLSearchParams();
+      params.set("search", placeName);
+      params.set("location", location.toString());
+      window.history.replaceState(null, "", `${window.location.protocol}//${window.location.host}${window.location.pathname}?${params}`);
     } else {
       setLocation(-1);
     }
@@ -50,13 +65,17 @@ export default function LocationSearch(props: { setLocation: (location: GeocodeP
     } else {
       props.setLocation(locations[location]);
     }
+    const params = new URLSearchParams();
+    params.set("search", placeName);
+    params.set("location", location.toString());
+    window.history.replaceState(null, "", `${window.location.protocol}//${window.location.host}${window.location.pathname}?${params}`);
   }, [location]);
 
   return (
     <Box sx={{ display: "flex", margin: "auto", width: "95%" }}>
       {!locations && (
         <TextField
-          sx={{ width: "75%"}}
+          sx={{ width: "75%" }}
           disabled={searching}
           ref={locationInput}
           label="City/Zip Code"
@@ -72,6 +91,7 @@ export default function LocationSearch(props: { setLocation: (location: GeocodeP
                 typeof event.target.value === "string"
               ) {
                 setPlaceName(event.target.value);
+                setLocation(-1);
                 if ("blur" in event.target && typeof event.target.blur === "function") {
                   event.target?.blur();
                 }
@@ -83,7 +103,7 @@ export default function LocationSearch(props: { setLocation: (location: GeocodeP
       {locations && location > -1 && (
         <TextField
           disabled={searching}
-          sx={{ width: "75%"}}
+          sx={{ width: "75%" }}
           ref={locationInput}
           label="Select a City"
           variant="standard"
@@ -91,6 +111,10 @@ export default function LocationSearch(props: { setLocation: (location: GeocodeP
           value={location}
           onChange={(event) => {
             setLocation(event.target.value ? Number(event.target.value) : 0);
+            const params = new URLSearchParams();
+            params.set("search", placeName);
+            params.set("location", location.toString());
+            window.history.replaceState(null, "", `${window.location.protocol}//${window.location.host}${window.location.pathname}?${params}`);
           }}
         >
           {locations?.map((x, index) => (
@@ -108,8 +132,10 @@ export default function LocationSearch(props: { setLocation: (location: GeocodeP
         color={locations ? "error" : "primary"}
         onClick={() => {
           if (!locations) {
+            setLocation(-1);
             setPlaceName(locationInput.current?.querySelector<HTMLInputElement>("input")?.value ?? "");
           } else {
+            setLocation(-1);
             setPlaceName("");
           }
         }}
