@@ -50,7 +50,7 @@ export default function LocationSearch(props: { setLocation: (location: GeocodeP
   useEffect(() => {
     if (locations && locations.length > 0) {
       setLocation(0);
-      const params = new URLSearchParams();
+      const params = new URLSearchParams(window.location.search);
       params.set("search", placeName);
       params.set("location", location.toString());
       window.history.replaceState(null, "", `${window.location.protocol}//${window.location.host}${window.location.pathname}?${params}`);
@@ -65,7 +65,7 @@ export default function LocationSearch(props: { setLocation: (location: GeocodeP
     } else {
       props.setLocation(locations[location]);
     }
-    const params = new URLSearchParams();
+    const params = new URLSearchParams(window.location.search);
     params.set("search", placeName);
     params.set("location", location.toString());
     window.history.replaceState(null, "", `${window.location.protocol}//${window.location.host}${window.location.pathname}?${params}`);

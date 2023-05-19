@@ -17,8 +17,22 @@ export default function WeatherApp() {
   const [activeTab, setActiveTab] = useState<number>(0);
 
   useEffect(() => {
-    setActiveTab(0);
-  }, [location]);
+    const urlParams = new URLSearchParams(window.location.search);
+    const tabParam = urlParams.get("activeTab");
+    if (tabParam) {
+      setActiveTab(Number(tabParam));
+    }
+  }, []);
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    urlParams.set("activeTab", activeTab.toString());
+    window.history.replaceState(
+      null,
+      "",
+      `${window.location.protocol}//${window.location.host}${window.location.pathname}?${urlParams}`
+    );
+  }, [activeTab]);
 
   return (
     <div>
