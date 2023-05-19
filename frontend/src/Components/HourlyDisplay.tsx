@@ -103,6 +103,7 @@ export default function HourlyDisplay(props: WeatherDisplayProps) {
                     count={hourlyWeather.hourly.time.length}
                     page={page}
                     rowsPerPage={rowsPerPage}
+                    rowsPerPageOptions={[10]}
                     onPageChange={(event, newPage) => {
                       setPage(newPage);
                     }}
