@@ -77,7 +77,7 @@ export default function HourlyDisplay(props: WeatherDisplayProps) {
     <Collapse orientation="vertical" in={!(!props.location || !hourlyWeather || !props.active)}>
       {props.location && hourlyWeather && (
         <Card sx={{ margin: "auto" }} variant="outlined">
-          <CardContent>
+          <CardContent sx={{ overflow: "auto" }}>
             <Table size="small">
               <TableHead>
                 <TableRow>
@@ -122,7 +122,7 @@ export default function HourlyDisplay(props: WeatherDisplayProps) {
 function ForecastHour(props: { hour: number; forecast: HourlyWeather; page: number }) {
   return (
     <TableRow>
-      <TableCell>
+      <TableCell sx={{ minWidth: "5em" }}>
         {new Date(props.forecast.hourly.time[props.hour]).toLocaleString("en-us", {
           month: "numeric",
           day: "numeric",
