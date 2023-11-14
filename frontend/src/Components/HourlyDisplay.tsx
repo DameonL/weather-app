@@ -17,6 +17,7 @@ import HourlyWeather from "../ApiInterfaces/ApiDefinitions/HourlyWeather";
 import FetchHourly from "../ApiInterfaces/FetchHourly";
 import getWeatherCode from "../ApiInterfaces/getWeatherCode";
 import WeatherDisplayProps from "./WeatherDisplayProps";
+import httpToHttps from "../httpToHttps";
 
 export default function HourlyDisplay(props: WeatherDisplayProps) {
   const [hourlyWeather, setHourlyWeather] = useState<HourlyWeather>();
@@ -134,10 +135,7 @@ function ForecastHour(props: { hour: number; forecast: HourlyWeather; page: numb
         {props.forecast.hourly_units.temperature_2m}
         <img
           style={{ width: "3em" }}
-          src={getWeatherCode(props.forecast.hourly.weathercode[props.hour].toString()).day.image.replace(
-            /http:\/\//i,
-            "https://"
-          )}
+          src={httpToHttps(getWeatherCode(props.forecast.hourly.weathercode[props.hour].toString()).day.image)}
         />
       </TableCell>
       <TableCell>

@@ -5,6 +5,7 @@ import FetchCurrentWeather from "../ApiInterfaces/FetchCurrentWeather";
 import { degreesToDirection } from "../ApiInterfaces/GeoCoding";
 import getWeatherCode from "../ApiInterfaces/getWeatherCode";
 import WeatherDisplayProps from "./WeatherDisplayProps";
+import httpToHttps from "../httpToHttps";
 
 export default function CurrentWeatherDisplay(props: WeatherDisplayProps) {
   const [currentWeather, setCurrentWeather] = useState<CurrentWeather>();
@@ -57,11 +58,11 @@ export default function CurrentWeatherDisplay(props: WeatherDisplayProps) {
               <CardMedia
                 component="img"
                 sx={{ width: "50px" }}
-                image={
+                image={httpToHttps(
                   currentWeather.current_weather.is_day
                     ? getWeatherCode(currentWeather.current_weather.weathercode.toString()).day.image
                     : getWeatherCode(currentWeather.current_weather.weathercode.toString()).night.image
-                }
+                )}
               />
             </Box>
             <Typography>Temperature: {currentWeather.current_weather.temperature}</Typography>

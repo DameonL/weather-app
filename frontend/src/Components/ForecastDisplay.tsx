@@ -4,6 +4,7 @@ import { Forecast } from "../ApiInterfaces/ApiDefinitions/Forecast";
 import FetchForecast from "../ApiInterfaces/FetchForecast";
 import getWeatherCode from "../ApiInterfaces/getWeatherCode";
 import WeatherDisplayProps from "./WeatherDisplayProps";
+import httpToHttps from "../httpToHttps";
 
 export default function ForecastDisplay(props: WeatherDisplayProps) {
   const [forecast, setForecast] = useState<Forecast>();
@@ -98,7 +99,7 @@ function ForecastDay(props: { day: number; forecast: Forecast }) {
           </Typography>
           <img
             style={{ width: "3em" }}
-            src={getWeatherCode(props.forecast.daily.weathercode[props.day].toString()).day.image}
+            src={httpToHttps(getWeatherCode(props.forecast.daily.weathercode[props.day].toString()).day.image)}
           />
         </Box>
       </Box>
