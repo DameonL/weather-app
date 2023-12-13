@@ -7,7 +7,7 @@
     "node": ">=18.6.0"
   },
   "scripts": {
-    "dev": "concurrently \"cd api && npm run dev\" \"cd frontend && npm run dev\"",
+    "dev": "concurrently \"npm --prefix api run dev\" \"npm --prefix frontend run dev\"",
     "install-all": "concurrently \"npm install\" \"cd api && npm install\" \"cd frontend && npm install\"",
     "build": "concurrently \"cd api && npm run build\" \"cd frontend && npm run build\"",
     "start": "swa start"
